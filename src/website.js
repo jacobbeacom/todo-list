@@ -1,5 +1,5 @@
 // This module creates the content structure for which this application will use
-
+import {makeProjectForm} from "./applogic/Projects/createnewproject";
 //Import checklocalstorage function here
 
 function createHeader() {
@@ -19,6 +19,7 @@ function createHeader() {
 function createSideBar() {
     const sidebar = document.createElement('div');
     sidebar.classList.add('sidebar');
+    sidebar.setAttribute('id', 'sidebar');
 
     const projectList = document.createElement('div');
     projectList.classList.add('projectList');
@@ -27,6 +28,9 @@ function createSideBar() {
     const addProject = document.createElement('button');
     addProject.classList.add('addProject');
     addProject.textContent = 'Add Project'
+    addProject.addEventListener('click', () => {
+        sidebar.appendChild(makeProjectForm());
+    });
 
     sidebar.appendChild(projectList);
     sidebar.appendChild(addProject);
