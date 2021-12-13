@@ -26,6 +26,7 @@ function createSideBar() {
 
     const addProject = document.createElement('button');
     addProject.classList.add('addProject');
+    addProject.textContent = 'Add Project'
 
     sidebar.appendChild(projectList);
     sidebar.appendChild(addProject);
