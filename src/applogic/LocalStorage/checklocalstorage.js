@@ -12,6 +12,6 @@ function checkStorage () {
     }
 }
 
-export default checkStorage;
+export {checkStorage, userProjects};
 
 //checkstorage will be called elsewhere, so we do not need to define a place for the stored userProjects array to go in this module
