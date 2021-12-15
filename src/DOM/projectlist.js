@@ -1,4 +1,5 @@
 import { userProjects } from "../applogic/LocalStorage/checklocalstorage";
+import { checkStorage } from "../applogic/LocalStorage/checklocalstorage";
 
 function populateProjectList() {
     const projectList = document.getElementById('projectList');

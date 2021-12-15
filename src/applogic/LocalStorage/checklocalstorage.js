@@ -1,14 +1,13 @@
-import { newProject } from "../Projects/createnewproject";
+import { createNewProject } from "../Projects/createnewproject";
 
 let userProjects = [];
 
 function checkStorage () {
-    if (Storage.length == 0) {
-       let defaultProject = newProject('New Project');
-       userProjects.push(defaultProject);
-
+    if (localStorage.length == 0) {
+        createNewProject('New Project');
+       
     } else {
-         return JSON.parse(window.localStorage.getItem('userProjects'))
+         return console.log(JSON.parse(window.localStorage.getItem('userProjects')))
     }
 }
 
