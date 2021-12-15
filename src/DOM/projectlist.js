@@ -4,6 +4,8 @@ function populateProjectList() {
     const projectList = document.getElementById('projectList');
     const projects = userProjects;
 
+    projectList.innerHTML = "";
+
     projects.forEach(function(element) {
         const listItem = document.createElement('button');
         listItem.classList.add('projectListItem');

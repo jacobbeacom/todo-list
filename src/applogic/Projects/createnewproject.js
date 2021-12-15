@@ -1,4 +1,5 @@
 import { userProjects } from "../LocalStorage/checklocalstorage";
+import populateProjectList from "../../DOM/projectlist";
 
 class Project {
     constructor(name) {
@@ -38,6 +39,7 @@ function makeProjectForm () {
     newProjectSubmit.addEventListener('click', () => {
         createNewProject(newProjectName.value);
         closeProjectForm();
+        populateProjectList();
     });
     
     const newProjectCancel = document.createElement('button');

@@ -1,5 +1,6 @@
 // This module creates the content structure for which this application will use
 import {makeProjectForm} from "./applogic/Projects/createnewproject";
+import populateProjectList from "./DOM/projectlist";
 //Import checklocalstorage function here
 
 function createHeader() {
@@ -65,6 +66,7 @@ function initializeSite() {
     content.appendChild(createSideBar());
     content.appendChild(createBody());
     content.appendChild(createFooter());
+    populateProjectList();
 
    // checkLocalStorage(); will not run until checklocalstorage has been imported
 }
