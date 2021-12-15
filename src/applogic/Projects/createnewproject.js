@@ -1,9 +1,23 @@
+import { userProjects } from "../LocalStorage/checklocalstorage";
+
 class Project {
     constructor(name) {
         this.name = name;
     }
     changeName(newName) {
         this.name = newName;
+    }
+    
+    toDoList = [];
+
+    addToDo(toDo) {
+        this.toDoList.push(toDo);
+    }
+
+    removeToDo(toDo) {
+        const removedToDo = this.toDoList.indexOf(toDo);
+        this.toDoList.splice(removedToDo, 1);
+
     }
 }
 
@@ -22,7 +36,7 @@ function makeProjectForm () {
     newProjectSubmit.classList.add('newProjectSubmit');
     newProjectSubmit.textContent = 'Submit';
     newProjectSubmit.addEventListener('click', () => {
-        newProject(newProjectName.value);
+        createNewProject(newProjectName.value);
         closeProjectForm();
     });
     
@@ -48,9 +62,11 @@ function closeProjectForm () {
     nav.removeChild(form);
 }
 
-function newProject(name) {
+function createNewProject(name) {
     const project = new Project(name);
-
+    //Still needs to spit out the new project to the project overview display area
+    userProjects.push(project);
+    console.log(userProjects);
 }
 
-export {makeProjectForm, newProject}
+export {makeProjectForm, createNewProject}
