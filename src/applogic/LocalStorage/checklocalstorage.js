@@ -18,13 +18,11 @@ function checkStorage () {
             projects.push(JSON.parse(localStorage.getItem(keys[i])));
         }
         for (let i = 0; i < projects.length; i++) {
-            console.log(projects[i])
             const classedProject = createNewProject(projects[i].name, projects[i].toDoList);
             classedProjects.push(classedProject);
-            //console.log(classedProject);
         }
         }
-        return classedProjects;
+    return classedProjects;
 }
 
 export {checkStorage};

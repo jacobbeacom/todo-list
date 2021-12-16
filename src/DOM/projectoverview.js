@@ -1,4 +1,5 @@
 import { checkStorage } from "../applogic/LocalStorage/checklocalstorage";
+import saveToStorage from "../applogic/LocalStorage/savetolocalstorage";
 
 function getActiveProject() {
     const projects = document.getElementsByClassName('projectListItem');
@@ -38,11 +39,15 @@ function populateDisplay() {
         }
     }   else {
         }
-
+    
     const newTaskButton = document.createElement('button');
     newTaskButton.classList.add('task');
     newTaskButton.setAttribute('id', 'newTaskButton');
-    //newTaskButton.addEventListener('click', )
+    newTaskButton.addEventListener('click', () => {
+        const project = userProjects[activeProject];
+        project.addToDo('New Task');
+        saveToStorage(project);
+    })
     projectTasksArea.appendChild(newTaskButton);
 
     displayArea.appendChild(projectTitle);
