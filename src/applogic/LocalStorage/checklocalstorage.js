@@ -3,9 +3,11 @@ import { createNewProject } from "../Projects/createnewproject";
 
 function checkStorage () {
     let projects = [];
+    let classedProjects = [];
+    const toDoList = [];
     if (localStorage.length === 0) {
-        const defaultProject = createNewProject('New Project');
-        projects.push(defaultProject);
+        const defaultProject = createNewProject('New Project', toDoList);
+        classedProjects.push(defaultProject);
         
     }   else if (localStorage.length > 0) {
         
@@ -15,9 +17,14 @@ function checkStorage () {
             //localStorage.getItem(keys[i])
             projects.push(JSON.parse(localStorage.getItem(keys[i])));
         }
-        
+        for (let i = 0; i < projects.length; i++) {
+            console.log(projects[i])
+            const classedProject = createNewProject(projects[i].name, projects[i].toDoList);
+            classedProjects.push(classedProject);
+            //console.log(classedProject);
         }
-    return projects;
+        }
+        return classedProjects;
 }
 
 export {checkStorage};

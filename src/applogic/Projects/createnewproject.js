@@ -4,14 +4,13 @@ import saveToStorage from "../LocalStorage/savetolocalstorage";
 
 
 class Project {
-    constructor(name) {
+    constructor(name, toDoList) {
         this.name = name;
+        this.toDoList = toDoList;
     }
     changeName(newName) {
         this.name = newName;
     }
-    
-    toDoList = [];
 
     addToDo(toDo) {
         this.toDoList.push(toDo);
@@ -66,8 +65,8 @@ function closeProjectForm () {
     nav.removeChild(form);
 }
 
-function createNewProject(name) {
-    const project = new Project(name);
+function createNewProject(name, toDoList) {
+    const project = new Project(name, toDoList);
     //Still needs to spit out the new project to the project overview display area
     saveToStorage(project);
     return project;
