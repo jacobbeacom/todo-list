@@ -67,7 +67,6 @@ function initializeSite() {
     content.appendChild(createSideBar());
     content.appendChild(createBody());
     content.appendChild(createFooter());
-    checkStorage();
     populateProjectList();
 
    // checkLocalStorage(); will run inside of populateprojectlist function

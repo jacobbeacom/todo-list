@@ -3,17 +3,17 @@ import { checkStorage } from "../applogic/LocalStorage/checklocalstorage";
 
 function populateProjectList() {
     const projectList = document.getElementById('projectList');
-    const projects = userProjects;
+    const projects = checkStorage();
 
     projectList.innerHTML = "";
 
-    projects.forEach(function(element) {
+    for (let i = 0; i < projects.length; i++) {
         const listItem = document.createElement('button');
         listItem.classList.add('projectListItem');
-        listItem.textContent = element.name;
-        listItem.setAttribute('id', `${element.name}`);
+        listItem.textContent = `${projects[i].name}`;
+        listItem.setAttribute('id', `${projects[i].name}`);
         projectList.appendChild(listItem);
-    })
+    }
 }
 
 export default populateProjectList;
