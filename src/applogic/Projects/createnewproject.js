@@ -1,5 +1,7 @@
-import { userProjects } from "../LocalStorage/checklocalstorage";
 import populateProjectList from "../../DOM/projectlist";
+import saveToStorage from "../LocalStorage/savetolocalstorage";
+
+
 
 class Project {
     constructor(name) {
@@ -67,8 +69,8 @@ function closeProjectForm () {
 function createNewProject(name) {
     const project = new Project(name);
     //Still needs to spit out the new project to the project overview display area
-    userProjects.push(project);
-    console.log(userProjects);
+    saveToStorage(project);
+    return project;
 }
 
 export {makeProjectForm, createNewProject}
