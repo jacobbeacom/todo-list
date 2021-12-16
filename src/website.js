@@ -1,8 +1,7 @@
 // This module creates the content structure for which this application will use
-import { checkStorage } from "./applogic/LocalStorage/checklocalstorage";
 import {makeProjectForm} from "./applogic/Projects/createnewproject";
 import populateProjectList from "./DOM/projectlist";
-
+import populateDisplay from "./DOM/projectoverview";
 
 function createHeader() {
     const header = document.createElement('header');
@@ -45,7 +44,6 @@ function createBody() {
     const body = document.createElement('main');
     body.setAttribute('id', 'body');
     body.classList.add('main');
-
     return body;
 }
 
@@ -65,11 +63,12 @@ function initializeSite() {
     const content = document.getElementById('content');
     content.appendChild(createHeader());
     content.appendChild(createSideBar());
+    populateProjectList();
     content.appendChild(createBody());
     content.appendChild(createFooter());
-    populateProjectList();
-
-   // checkLocalStorage(); will run inside of populateprojectlist function
+    populateDisplay();
+    
 }
 
 export default initializeSite;
+

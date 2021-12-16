@@ -21,7 +21,7 @@ function populateProjectList() {
                     }
                     e.target.classList.add('active');
             }
-        });
+        })
         projectList.appendChild(listItem);
     }
 }

@@ -23,4 +23,3 @@ function checkStorage () {
 export {checkStorage};
 
 //checkstorage will be called elsewhere, so we do not need to define a place for the stored userProjects array to go in this module
-//JSON.parse(window.localStorage.getItem('userProjects')))
