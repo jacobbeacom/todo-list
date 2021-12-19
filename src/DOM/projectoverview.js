@@ -1,4 +1,4 @@
-import { checkStorage } from '../applogic/LocalStorage/checklocalstorage';
+import checkStorage from '../applogic/LocalStorage/checklocalstorage';
 import saveToStorage from '../applogic/LocalStorage/savetolocalstorage';
 
 function getActiveProject() {
@@ -32,20 +32,41 @@ function populateDisplay() {
 
   if (tasks.length > 0) {
     for (let i = 0; i < tasks.length; i += 1) {
-      const button = document.createElement('button');
-      button.classList.add('task');
-      button.textContent = tasks[i];
-      projectTasksArea.appendChild(button);
+      const task = document.createElement('div');
+      task.classList.add('task');
+
+      const taskTitle = document.createElement('p');
+      taskTitle.textContent = tasks[i].getName();
+
+      const taskDate = document.createElement('p');
+      taskDate.textContent = tasks[i].getDate();
+
+      const completedDiv = document.createElement('div');
+      const taskCompleted = document.createElement('input');
+      taskCompleted.setAttribute('type', 'checkbox');
+      taskCompleted.setAttribute('id', `${taskTitle.textContent} Completed`);
+      const taskCompletedLabel = document.createElement('label');
+      taskCompletedLabel.setAttribute('for', `${taskTitle.textContent} Completed`);
+      completedDiv.appendChild(taskCompleted);
+      completedDiv.appendChild(taskCompletedLabel);
+
+      task.appendChild(taskTitle);
+      task.appendChild(taskDate);
+      task.appendChild(completedDiv);
+
+      projectTasksArea.appendChild(task);
     }
   }
 
   const newTaskButton = document.createElement('button');
   newTaskButton.classList.add('task');
   newTaskButton.setAttribute('id', 'newTaskButton');
+  newTaskButton.textContent = 'Add New Task';
   newTaskButton.addEventListener('click', () => {
     const project = userProjects[activeProject];
     project.addToDo('New Task');
     saveToStorage(project);
+    populateDisplay();
   });
   projectTasksArea.appendChild(newTaskButton);
 
