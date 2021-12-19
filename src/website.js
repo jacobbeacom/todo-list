@@ -1,74 +1,70 @@
 // This module creates the content structure for which this application will use
-import {makeProjectForm} from "./applogic/Projects/createnewproject";
-import populateProjectList from "./DOM/projectlist";
-import populateDisplay from "./DOM/projectoverview";
+import { makeProjectForm } from './applogic/Projects/createnewproject';
+import populateProjectList from './DOM/projectlist';
+import populateDisplay from './DOM/projectoverview';
 
 function createHeader() {
-    const header = document.createElement('header');
-    header.classList.add('header');
+  const header = document.createElement('header');
+  header.classList.add('header');
 
-    const appTitle = document.createElement('h1');
-    appTitle.textContent = 'To.Do';
-    appTitle.classList.add('appTitle');
+  const appTitle = document.createElement('h1');
+  appTitle.textContent = 'To.Do';
+  appTitle.classList.add('appTitle');
 
-    header.appendChild(appTitle);
+  header.appendChild(appTitle);
 
-    return header;
-    
+  return header;
 }
 
 function createSideBar() {
-    const sidebar = document.createElement('div');
-    sidebar.classList.add('sidebar');
-    sidebar.setAttribute('id', 'sidebar');
+  const sidebar = document.createElement('div');
+  sidebar.classList.add('sidebar');
+  sidebar.setAttribute('id', 'sidebar');
 
-    const projectList = document.createElement('div');
-    projectList.classList.add('projectList');
-    projectList.setAttribute('id', 'projectList');
+  const projectList = document.createElement('div');
+  projectList.classList.add('projectList');
+  projectList.setAttribute('id', 'projectList');
 
-    const addProject = document.createElement('button');
-    addProject.classList.add('addProject');
-    addProject.textContent = 'Add Project'
-    addProject.addEventListener('click', () => {
-        sidebar.appendChild(makeProjectForm());
-    });
+  const addProject = document.createElement('button');
+  addProject.classList.add('addProject');
+  addProject.textContent = 'Add Project';
+  addProject.addEventListener('click', () => {
+    sidebar.appendChild(makeProjectForm());
+  });
 
-    sidebar.appendChild(projectList);
-    sidebar.appendChild(addProject);
+  sidebar.appendChild(projectList);
+  sidebar.appendChild(addProject);
 
-    return sidebar;
-
+  return sidebar;
 }
 
 function createBody() {
-    const body = document.createElement('main');
-    body.setAttribute('id', 'body');
-    body.classList.add('main');
-    return body;
+  const body = document.createElement('main');
+  body.setAttribute('id', 'body');
+  body.classList.add('main');
+  return body;
 }
 
 function createFooter() {
-    const footer = document.createElement('footer');
-    footer.classList.add('footer');
+  const footer = document.createElement('footer');
+  footer.classList.add('footer');
 
-    const copyright = document.createElement('a');
-    copyright.textContent = `©Jacob Beacom 2021`
-    copyright.setAttribute('href', 'https://github.com/jacobbeacom');
-    footer.appendChild(copyright);
+  const copyright = document.createElement('a');
+  copyright.textContent = '©Jacob Beacom 2021';
+  copyright.setAttribute('href', 'https://github.com/jacobbeacom');
+  footer.appendChild(copyright);
 
-    return footer;
+  return footer;
 }
 
 function initializeSite() {
-    const content = document.getElementById('content');
-    content.appendChild(createHeader());
-    content.appendChild(createSideBar());
-    populateProjectList();
-    content.appendChild(createBody());
-    content.appendChild(createFooter());
-    populateDisplay();
-    
+  const content = document.getElementById('content');
+  content.appendChild(createHeader());
+  content.appendChild(createSideBar());
+  populateProjectList();
+  content.appendChild(createBody());
+  content.appendChild(createFooter());
+  populateDisplay();
 }
 
 export default initializeSite;
-
