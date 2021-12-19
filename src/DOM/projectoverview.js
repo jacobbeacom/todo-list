@@ -7,6 +7,8 @@ function getActiveProject() {
   for (let i = 0; i < projects.length; i += 1) {
     if (projects[i].classList.contains('active')) {
       result = i;
+    } else {
+      result = 0;
     }
   }
   return result;
@@ -22,7 +24,7 @@ function populateDisplay() {
   displayArea.innerHTML = '';
 
   const projectTitle = document.createElement('p');
-  projectTitle.textContent = `${activeProject.name}`;
+  projectTitle.textContent = `${userProjects[activeProject].name}`;
   projectTitle.classList.add('projectTitle');
 
   const projectTasksArea = document.createElement('div');
