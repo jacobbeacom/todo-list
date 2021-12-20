@@ -1,5 +1,6 @@
 import checkStorage from '../applogic/LocalStorage/checklocalstorage';
 import saveToStorage from '../applogic/LocalStorage/savetolocalstorage';
+import deleteTask from '../applogic/Tasks/deletetask';
 
 function getActiveProject() {
   let result = 0;
@@ -13,8 +14,6 @@ function getActiveProject() {
   }
   return result;
 }
-
-// Need to figure out how to correctly get the current active project!!!!
 
 function populateDisplay() {
   const activeProject = getActiveProject();
@@ -49,12 +48,23 @@ function populateDisplay() {
       taskCompleted.setAttribute('id', `${taskTitle.textContent} Completed`);
       const taskCompletedLabel = document.createElement('label');
       taskCompletedLabel.setAttribute('for', `${taskTitle.textContent} Completed`);
+      taskCompletedLabel.textContent = 'Completed';
+
       completedDiv.appendChild(taskCompleted);
       completedDiv.appendChild(taskCompletedLabel);
+
+      const deleteTaskButton = document.createElement('button');
+      deleteTaskButton.textContent = 'X';
+      deleteTaskButton.addEventListener('click', () => {
+        deleteTask(i, userProjects[activeProject]);
+        saveToStorage(userProjects[activeProject]);
+        populateDisplay();
+      });
 
       task.appendChild(taskTitle);
       task.appendChild(taskDate);
       task.appendChild(completedDiv);
+      task.appendChild(deleteTaskButton);
 
       projectTasksArea.appendChild(task);
     }
