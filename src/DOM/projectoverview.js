@@ -55,6 +55,7 @@ function populateDisplay() {
 
       const deleteTaskButton = document.createElement('button');
       deleteTaskButton.textContent = 'X';
+      deleteTaskButton.classList.add('deleteTaskButton');
       deleteTaskButton.addEventListener('click', () => {
         deleteTask(i, userProjects[activeProject]);
         saveToStorage(userProjects[activeProject]);

@@ -38,7 +38,7 @@ function makeProjectForm() {
   newProjectSubmit.classList.add('newProjectSubmit');
   newProjectSubmit.textContent = 'Submit';
   newProjectSubmit.addEventListener('click', () => {
-    createNewProject(newProjectName.value);
+    createNewProject(newProjectName.value, []);
     closeProjectForm();
     populateProjectList();
   });
@@ -67,7 +67,6 @@ function closeProjectForm() {
 
 function createNewProject(name, toDoList) {
   const project = new Project(name, toDoList);
-  // Still needs to spit out the new project to the project overview display area
   saveToStorage(project);
   return project;
 }

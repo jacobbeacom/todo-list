@@ -32,7 +32,6 @@ class Task {
 
 function createNewTask(name, dueDate, completed) {
   const newTask = new Task(name, dueDate, completed);
-  console.log(newTask);
   return newTask;
 }
 

@@ -16,7 +16,6 @@ function checkStorage() {
     while (i--) {
       projects.push(JSON.parse(localStorage.getItem(keys[i])));
     }
-
     for (let p = 0; p < projects.length; p += 1) {
       for (let s = 0; s < projects[p].toDoList.length; s += 1) {
         const task = projects[p].toDoList[s];
