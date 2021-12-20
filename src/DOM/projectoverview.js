@@ -38,6 +38,19 @@ function populateDisplay() {
 
       const taskTitle = document.createElement('p');
       taskTitle.textContent = tasks[i].getName();
+      taskTitle.addEventListener('click', () => {
+        const taskTitleUpdate = document.createElement('input');
+        taskTitleUpdate.setAttribute('type', 'text');
+        taskTitleUpdate.setAttribute('placeholder', 'Enter New Project Title Here');
+        taskTitleUpdate.addEventListener('keyup', (e) => {
+          if (e.key === 'Enter') {
+            tasks[i].setName(taskTitleUpdate.value);
+            saveToStorage(userProjects[activeProject]);
+            populateDisplay();
+          }
+        });
+        taskTitle.replaceWith(taskTitleUpdate);
+      });
 
       const taskDate = document.createElement('p');
       taskDate.textContent = tasks[i].getDate();

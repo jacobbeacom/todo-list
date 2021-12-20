@@ -31,5 +31,3 @@ function checkStorage() {
 }
 
 export default checkStorage;
-
-// checkstorage will be called else+where, so we do not need to define a place for the stored userProjects array to go in this module
