@@ -56,6 +56,7 @@ function populateDisplay() {
       taskDate.textContent = tasks[i].getDate();
 
       const completedDiv = document.createElement('div');
+      completedDiv.classList.add('taskCompleted');
       const taskCompleted = document.createElement('input');
       taskCompleted.setAttribute('type', 'checkbox');
       taskCompleted.setAttribute('id', `${taskTitle.textContent} Completed`);
@@ -85,7 +86,6 @@ function populateDisplay() {
   }
 
   const newTaskButton = document.createElement('button');
-  newTaskButton.classList.add('task');
   newTaskButton.setAttribute('id', 'newTaskButton');
   newTaskButton.textContent = 'Add New Task';
   newTaskButton.addEventListener('click', () => {
