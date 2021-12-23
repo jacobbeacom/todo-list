@@ -16,20 +16,36 @@ function getActiveProject() {
 }
 
 function populateDisplay() {
+  const userProjects = checkStorage();
   const activeProject = getActiveProject();
   const displayArea = document.getElementById('body');
-  const userProjects = checkStorage();
 
   displayArea.innerHTML = '';
 
   const projectTitle = document.createElement('p');
   projectTitle.textContent = `${userProjects[activeProject].name}`;
   projectTitle.classList.add('projectTitle');
+  projectTitle.addEventListener('click', () => {
+    const projectTitleUpdate = document.createElement('input');
+    projectTitleUpdate.classList.add('projectTitle');
+    projectTitleUpdate.setAttribute('type', 'text');
+    projectTitleUpdate.setAttribute('placeholder', 'Enter new project title');
+    projectTitleUpdate.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        userProjects[activeProject].changeName(projectTitleUpdate.value);
+        saveToStorage(userProjects[activeProject]);
+        projectTitleUpdate.replaceWith(projectTitle);
+        projectTitle.textContent = userProjects[activeProject].name;
+      }
+    });
+    projectTitle.replaceWith(projectTitleUpdate);
+  });
 
   const projectTasksArea = document.createElement('div');
   projectTasksArea.classList.add('projectTasksArea');
 
   const tasks = userProjects[activeProject].toDoList;
+  
 
   if (tasks.length > 0) {
     for (let i = 0; i < tasks.length; i += 1) {
@@ -41,12 +57,13 @@ function populateDisplay() {
       taskTitle.addEventListener('click', () => {
         const taskTitleUpdate = document.createElement('input');
         taskTitleUpdate.setAttribute('type', 'text');
-        taskTitleUpdate.setAttribute('placeholder', 'Enter New Project Title Here');
+        taskTitleUpdate.setAttribute('placeholder', 'Enter new task title');
         taskTitleUpdate.addEventListener('keyup', (e) => {
           if (e.key === 'Enter') {
             tasks[i].setName(taskTitleUpdate.value);
             saveToStorage(userProjects[activeProject]);
-            populateDisplay();
+            taskTitleUpdate.replaceWith(taskTitle);
+            taskTitle.textContent = tasks[i].getName();
           }
         });
         taskTitle.replaceWith(taskTitleUpdate);
@@ -54,6 +71,20 @@ function populateDisplay() {
 
       const taskDate = document.createElement('p');
       taskDate.textContent = tasks[i].getDate();
+      taskDate.addEventListener('click', () => {
+        const taskDateUpdate = document.createElement('input');
+        taskDateUpdate.setAttribute('type', 'text');
+        taskDateUpdate.setAttribute('placeholder', 'Enter new due date');
+        taskDateUpdate.addEventListener('keyup', (e) => {
+          if (e.key === 'Enter') {
+            tasks[i].setDate(taskDateUpdate.value);
+            saveToStorage(userProjects[activeProject]);
+            taskDateUpdate.replaceWith(taskDate);
+            taskDate.textContent = tasks[i].getDate();
+          }
+        });
+        taskDate.replaceWith(taskDateUpdate);
+      });
 
       const completedDiv = document.createElement('div');
       completedDiv.classList.add('taskCompleted');

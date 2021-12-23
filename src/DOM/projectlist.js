@@ -23,6 +23,7 @@ function populateProjectList() {
         }
         e.target.classList.add('active');
       }
+      populateDisplay();
     });
 
     const deleteProjectButton = document.createElement('button');
