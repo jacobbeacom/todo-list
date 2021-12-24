@@ -9,6 +9,7 @@ class Project {
   }
 
   changeName(newName) {
+    localStorage.removeItem(this.name);
     this.name = newName;
   }
 
@@ -38,7 +39,8 @@ function makeProjectForm() {
   newProjectSubmit.classList.add('newProjectSubmit');
   newProjectSubmit.textContent = 'Submit';
   newProjectSubmit.addEventListener('click', () => {
-    createNewProject(newProjectName.value, []);
+    const newProject = createNewProject(newProjectName.value, []);
+    saveToStorage(newProject);
     closeProjectForm();
     populateProjectList();
   });

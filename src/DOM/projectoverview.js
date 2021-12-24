@@ -1,6 +1,7 @@
 import checkStorage from '../applogic/LocalStorage/checklocalstorage';
 import saveToStorage from '../applogic/LocalStorage/savetolocalstorage';
 import deleteTask from '../applogic/Tasks/deletetask';
+import populateProjectList from './projectlist';
 
 function getActiveProject() {
   let result = 0;
@@ -8,6 +9,7 @@ function getActiveProject() {
   for (let i = 0; i < projects.length; i += 1) {
     if (projects[i].classList.contains('active')) {
       result = i;
+      break;
     } else {
       result = 0;
     }
@@ -29,23 +31,31 @@ function populateDisplay() {
     const projectTitleUpdate = document.createElement('input');
     projectTitleUpdate.classList.add('projectTitle');
     projectTitleUpdate.setAttribute('type', 'text');
-    projectTitleUpdate.setAttribute('placeholder', 'Enter new project title');
+    projectTitleUpdate.setAttribute('placeholder', `${userProjects[activeProject].name}`);
     projectTitleUpdate.addEventListener('keyup', (e) => {
       if (e.key === 'Enter') {
         userProjects[activeProject].changeName(projectTitleUpdate.value);
         saveToStorage(userProjects[activeProject]);
         projectTitleUpdate.replaceWith(projectTitle);
         projectTitle.textContent = userProjects[activeProject].name;
+        populateProjectList();
       }
     });
     projectTitle.replaceWith(projectTitleUpdate);
   });
 
+  const projectsOnList = document.getElementsByClassName('projectListItem');
+  for (let i = 0; i < projectsOnList.length; i += 1) {
+    if (projectsOnList[i].id === projectTitle.textContent) {
+      projectsOnList[i].classList.add('active');
+      break;
+    }
+  }
+
   const projectTasksArea = document.createElement('div');
   projectTasksArea.classList.add('projectTasksArea');
 
   const tasks = userProjects[activeProject].toDoList;
-  
 
   if (tasks.length > 0) {
     for (let i = 0; i < tasks.length; i += 1) {
