@@ -99,6 +99,7 @@ function populateDisplay() {
       const completedDiv = document.createElement('div');
       completedDiv.classList.add('taskCompleted');
       const taskCompleted = document.createElement('input');
+      taskCompleted.classList.add('checkbox-round');
       taskCompleted.setAttribute('type', 'checkbox');
       taskCompleted.setAttribute('id', `${taskTitle.textContent} Completed`);
       const taskCompletedLabel = document.createElement('label');

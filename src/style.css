@@ -77,8 +77,9 @@ body {
     align-items: center;
     color: #CED4DA;
     width: 100%;
-    padding: 2px;
     margin-bottom: 5px;
+    padding-left: 1px;
+    padding-right: 1px;
 }
 
 .projectListItem:hover {
@@ -170,11 +171,16 @@ body {
     color: #495057;
     border: none;
     font-size: 16px;
+    order: 3;
 }
 
 .task button:hover {
     background-color: #6C757D;
     border-radius: 15px;
+}
+
+.task p {
+    order: 2;
 }
 
 .task p:hover {
@@ -184,11 +190,31 @@ body {
 
 .taskCompleted {
     margin-bottom: 0px;
+    order: 1;
 }
 
 .taskCompleted:hover {
     background-color: #6C757D;
     border-radius: 15px;
+}
+
+.checkbox-round {
+    width: 1.5em;
+    height: 1.5em;
+    background-color: #DEE2E6;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #495057;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: 0px;
+    margin-right: 6px;
+}
+
+.checkbox-round:checked {
+    background-color: #6C757D;
 }
 
 .footer {
@@ -197,4 +223,9 @@ body {
     bottom: 0;
     width: 100%;
     height: 20px;
+}
+
+.footer a {
+    color: black;
+    text-decoration: none;
 }
